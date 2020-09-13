@@ -10,10 +10,7 @@ pipeline {
       parallel {
         stage('del dockerfile') {
           steps {
-            dir(path: '/home') {
-              sh 'pwd'
-            }
-
+            sh 'rm -rf /home/fish-dockerfile'
           }
         }
 
@@ -28,19 +25,15 @@ pipeline {
 
     stage('pull dockerfile') {
       steps {
-        dir(path: '/home') {
-          sh 'git clone git@github.com:TuWeiZhi/fish-dockerfile.git'
-        }
-
+        sh '''cd /home
+git clone git@github.com:TuWeiZhi/fish-dockerfile.git'''
       }
     }
 
     stage('build image') {
       steps {
-        dir(path: '/home/fish-dockerfile') {
-          sh 'docker build -t back-fish:`date +"%Y-%m-%d"` -f Dockerfile .'
-        }
-
+        sh '''cd /home/fish-dockerfile
+docker build -t back-fish:`date +"%Y-%m-%d"` -f Dockerfile .'''
       }
     }
 
