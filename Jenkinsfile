@@ -39,7 +39,7 @@ docker build -t back-fish:`date +"%Y-%m-%d"` -f Dockerfile .'''
 
     stage('run container') {
       steps {
-        sh 'docker run -tid --name=back-fish-`date +"%Y-%m-%d"` -h back-fish --net=host -v /home/uwsgi-log:/tmp/uwsgi-log back-fish:`date +"%Y-%m-%d"`'
+        sh 'docker run -tid --name=back-fish-`date +"%Y-%m-%d"` -h back-fish --restart=always --net=host -v /home/uwsgi-log:/tmp/uwsgi-log back-fish:`date +"%Y-%m-%d"`'
       }
     }
 
