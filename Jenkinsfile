@@ -11,7 +11,7 @@ pipeline {
         stage('del dockerfile') {
           steps {
             dir(path: '/home') {
-              sh 'rm -rf fish-dockerfile'
+              sh 'pwd'
             }
 
           }
